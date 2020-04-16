@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet');
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css");
+// $font-main:'Noto Sans HK', sans-serif;
+$font-main:'Microsoft JhengHei';
+$font-num:'Open Sans', sans-serif;
+
+$color-white:#FFFFFF;
+$color-dark:#000000;
+$color-green: #95F084;
+$color-purple: #9777FF;
+$color-violet: #AD1774;
+$color-red:#FF5757;
+$color-orange:#FFAF6A;
+$color-fair:#FFE695;
+$color-gray:#FFFFFF;
+$color-darkGray:#F0F0F0;
+
+//桌機板1280px
+$base-font-size:1.6rem;
+$font-small:$base-font-size*0.63;//10px
+$font-base:$base-font-size; //16px
+$font-medium:$base-font-size*1.5; //24px
+$font-large:$base-font-size*2.25; //36px
+$font-x-large:$base-font-size*2.5; //40px
+$font-xx-large:$base-font-size*3; //46px
+
+
+

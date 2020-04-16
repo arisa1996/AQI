@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 10px;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/all.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <title>空氣品質指標</title>
+</head>
+<body>
+    <div id="wrap">
+        <div class="header">
+            <div class="mainArea">
+                <h1>空氣品質指標 (AQI)</h1>
+                <select class="area" v-model="selected">
+                    <option value="" disabled="disabled">請選擇地區</option>
+                    <option :value="county" v-for="(value,county) in newData">{{county}}</option>
+                </select>
+            </div>
+            <div class="indicatorBar">
+                <table>
+                    <tr>
+                        <th scope="col" class="box1">0~50</th>
+                        <th scope="col" class="box2">51～100</th>
+                        <th scope="col" class="box3">101～150</th>
+                        <th scope="col" class="box4">151～200</th>
+                        <th scope="col" class="box5">201～300</th>
+                        <th scope="col" class="box6">301～400</th>
+                    </tr>
+                    <tr>
+                        <td>良好</td>
+                        <td>普通</td>
+                        <td>對敏感族群<span>不健康</span></td>
+                        <td>對所有族群<span>不健康</span></td>
+                        <td>非常不健康</td>
+                        <td>危害</td>
+                    </tr>
+                </table>
+            </div>
+        </div> 
+        <section>
+            <div class="titleArea">
+                <h2>{{selected}}</h2>
+                <div class="dashed"></div>
+                <div class="text">
+                    <p>{{time}}<span>更新</span></p>
+                </div>
+            </div>
+            <div class="contentArea">
+                <div class="sideMenu">
+                    <div class="item sideItem">
+                        <div class="siteName" v-html="textChange(activeItem.SiteName)"></div>
+                        <div class="AQI" :class="colorStyle(activeItem)">{{activeItem.AQI}}</div>
+                    </div>
+                    <ul class="itemContent">
+                        <li>
+                            <div class="itemTex">
+                                <p>臭氧 <span>O3 (ppb)</span></p>
+                                <p class="num">{{ activeItem['O3'] }}</p>
+                            </div>  
+                        </li>
+                        <li>
+                            <div class="itemTex">
+                                <p>懸浮微粒 <span>PM10 (μg/m³)</span></p>
+                                <p class="num">{{ activeItem['PM10'] }}</p>
+                            </div>  
+                        </li>
+                        <li>
+                            <div class="itemTex">
+                                <p>細懸浮微粒 <span>PM2.5 (μg/m³)</span></p>
+                                <p class="num">{{ activeItem['PM2.5'] }}</p>
+                            </div>  
+                        </li>
+                        <li>
+                            <div class="itemTex">
+                                <p>一氧化碳 <span>CO (ppm)</span></p>
+                                <p class="num">{{ activeItem['CO'] }}</p>
+                            </div>  
+                        </li>
+                        <li>
+                            <div class="itemTex">
+                                <p>二氧化硫 <span>SO2 (ppb)</span></p>
+                                <p class="num">{{ activeItem['SO2'] }}</p>
+                            </div>  
+                        </li>
+                        <li >
+                            <div class="itemTex boderN">
+                                <p>二氧化氮 <span>NO2 (ppb)</span></p>
+                                <p class="num">{{ activeItem['NO2'] }}</p>
+                            </div>  
+                        </li>
+                    </ul>
+                </div>
+                <ul class="listArea">
+                    <li v-for="list in selectList">
+                        <div class="item" @click="activeList(list)">
+                            <div class="siteName" v-html="textChange(list.SiteName)"></div>
+                            <div class="AQI" :class="colorStyle(list)">{{list.AQI}}</div>  
+                        </div>
+                    </li>  
+                </ul>
+            </div>
+        </section>
+        <div class="footer">
+            <p>資料來源：行政院環境保護署</p>
+            <span>Copyright © 2019 HexSchool. All rights reserved.</span>
+        </div>
+    </div>
+    <script src="all.js"></script>
+</body>
+</html>
